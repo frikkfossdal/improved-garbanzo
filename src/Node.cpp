@@ -16,7 +16,7 @@ Node::Node(int initPos){
 }
 void Node::setup(){
     //setup parameters for the class. This is the layout of the GUI
-    borderRad = 50;
+    borderRad = 130;
     
     parameters.add(pos.set("Position", ofVec3f(0, 0), ofVec3f(0, 0), ofVec3f(900,400)));
     parameters.add(vel.set("Velocity", ofVec3f(0, 0), ofVec3f(-10, -10), ofVec3f(10,10)));

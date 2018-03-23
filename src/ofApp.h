@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "Director.hpp"
-#include "ofxSvg.h"
+
 
 class ofApp : public ofBaseApp{
 
@@ -30,6 +30,6 @@ class ofApp : public ofBaseApp{
     ofxPanel panel2;
     ofxPanel panel3;
     
-        
+    
     
 };
