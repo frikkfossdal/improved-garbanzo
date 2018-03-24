@@ -16,7 +16,7 @@ Node::Node(int initPos){
 }
 void Node::setup(){
     //setup parameters for the class. This is the layout of the GUI
-    borderRad = 130;
+    borderRad = 60;
     
     parameters.add(pos.set("Position", ofVec3f(0, 0), ofVec3f(0, 0), ofVec3f(900,400)));
     parameters.add(vel.set("Velocity", ofVec3f(0, 0), ofVec3f(-10, -10), ofVec3f(10,10)));
@@ -44,15 +44,20 @@ void Node::update(){
     pos.operator+=(vel);
     acc.operator*=(0);
 }
-void Node::setTarget(ofVec3f _target){
-    target = _target;
+void Node::border(){
+    if(pos->x > 900){
+        acc.set(ofVec3f(-.3,0,0));
+    }
+    if(pos->x < 0){
+        acc.set(ofVec3f(.3,0,0));
+    }
+    if(pos->y > 400){
+        acc.set(ofVec3f(0,-.3,0));
+    }
+    if(pos->y < 0){
+        acc.set(ofVec3f(0,.3,0));
+    }
 }
-void Node::goToTarget(){
-    //calculate number of steps on each axis
-    ofVec3f distToTarget = target.operator-(pos);
-    
-    //Your job is to calculate the velocity and acceleration necassary to reach the target without any overshoot
-    //--> it might be easier to neglect acceleration initially and just turn velocity on and off at given moments
-}
+
 //private methods
 

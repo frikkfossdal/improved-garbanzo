@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     Krennic.initSystem(3);
-    cam.enableOrtho();
+    //cam.enableOrtho();
     panel1.setup(Krennic.nodes[0].parameters);
     panel2.setup(Krennic.nodes[1].parameters);
     panel3.setup(Krennic.nodes[2].parameters);

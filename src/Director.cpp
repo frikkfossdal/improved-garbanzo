@@ -32,7 +32,7 @@ void Director::showSystem(){
 }
 void Director::updateSystem(){
     for(auto it = nodes.begin(); it!=nodes.end(); it++){
-        it->update(); 
+        it->update();
+        it->border();
     }
 }
-

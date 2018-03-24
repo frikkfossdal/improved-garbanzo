@@ -35,10 +35,6 @@ public:
     void goTo();
     void update();
     void border();
-    bool acknowledge();
-    void setTarget(ofVec3f _target);
-    void goToTarget();
-    void startStepperThreads(); 
 
 private:
     void setup();
