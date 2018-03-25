@@ -28,6 +28,7 @@ public:
     ofParameter<ofVec3f> acc;
     ofParameter<double> targetDist;
     ofParameter<bool> status;
+    ofParameter<bool> synced; 
     ofParameterGroup parameters;
     
     //Methods

@@ -23,6 +23,7 @@ void Node::setup(){
     parameters.add(acc.set("Acceleration", ofVec3f(0, 0), ofVec3f(-5, -5), ofVec3f(5,5)));
     parameters.add(targetDist.set("TargetDist", 0, 0, 300));
     parameters.add(status.set("Moving",false));
+    parameters.add(synced.set("Synced",false));
 }
 void Node::show(){
     ofNoFill();
