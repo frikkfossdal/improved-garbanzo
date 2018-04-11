@@ -22,7 +22,8 @@ public:
     void initSystem(int numberOfNodes);
     void showSystem();
     void updateSystem();
-    void assignTargets(); 
+    void assignTargets();
+    
 private:
 };
 

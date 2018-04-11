@@ -32,5 +32,4 @@ class ofApp : public ofBaseApp{
     ofxPanel panel3;
     
     ofxSVG logo; 
-    
 };

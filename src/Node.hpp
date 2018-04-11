@@ -12,6 +12,7 @@
 #include "ofMain.h"
 #include "Stepper.hpp"
 #include "ofxGui.h"
+#include "ofxGrbl.h"
 
 class Node{
 public:
@@ -30,6 +31,8 @@ public:
     ofParameter<bool> status;
     ofParameter<bool> synced; 
     ofParameterGroup parameters;
+    
+    ofxGrbl grbl1; 
     
     //Methods
     void show();

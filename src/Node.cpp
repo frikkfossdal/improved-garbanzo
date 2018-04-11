@@ -34,6 +34,7 @@ void Node::show(){
     ofTranslate(0,0,-60);
     ofSetColor(255, 0, 0);
     ofDrawCircle(pos->x, pos->y, borderRad);
+    ofDrawLine(pos->x+vel->getNormalized().x*40, pos->y + vel->getNormalized().y*40,pos->x +  vel->x, pos->y + vel->y);
 }
 void Node::goTo(){
     float distToTarget = target.distance(pos);
@@ -44,21 +45,28 @@ void Node::update(){
     vel.operator+=(acc);
     pos.operator+=(vel);
     acc.operator*=(0);
+    
+    //limit magnitude
+    if(vel->length() > 4){
+        vel.set(vel->getNormalized()*10);
+    }
 }
 void Node::border(){
     if(pos->x > 900){
-        acc.set(ofVec3f(-.3,0,0));
+        acc.set(ofVec3f(-2,0,0));
     }
     if(pos->x < 0){
-        acc.set(ofVec3f(.3,0,0));
+        acc.set(ofVec3f(2,0,0));
     }
     if(pos->y > 400){
-        acc.set(ofVec3f(0,-.3,0));
+        acc.set(ofVec3f(0,-2,0));
     }
     if(pos->y < 0){
-        acc.set(ofVec3f(0,.3,0));
+        acc.set(ofVec3f(0,2,0));
     }
 }
+
+
 
 //private methods
 
