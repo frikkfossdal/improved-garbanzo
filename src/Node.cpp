@@ -4,65 +4,44 @@
 //
 //  Created by Frikk Fossdal on 31.01.2018.
 //
+//  Redo this and make it as a thread
 
 #include "Node.hpp"
 Node::Node(){
+}
+Node::Node(ofVec3f initPos){
     setup();
+    pos = initPos;
 }
-Node::Node(int initPos){
-    setup();
-    target = ofVec3f(600, 200);
-    pos.set(ofVec3f(initPos, 0));
-}
-void Node::setup(){
-    //setup parameters for the class. This is the layout of the GUI
-    borderRad = 60;
-    
-    parameters.add(pos.set("Position", ofVec3f(0, 0), ofVec3f(0, 0), ofVec3f(900,400)));
-    parameters.add(vel.set("Velocity", ofVec3f(0, 0), ofVec3f(-10, -10), ofVec3f(10,10)));
-    parameters.add(acc.set("Acceleration", ofVec3f(0, 0), ofVec3f(-5, -5), ofVec3f(5,5)));
-    parameters.add(targetDist.set("TargetDist", 0, 0, 300));
-    parameters.add(status.set("Moving",false));
-    parameters.add(synced.set("Synced",false));
-}
+
 void Node::show(){
     ofNoFill();
     ofSetColor(100);
     //ofDrawBox(pos->x, 0, 0, 30, 800, 50);
     ofTranslate(0, 0,60);
-    ofDrawBox(pos->x,pos->y,pos->z,50,50,100);
+    ofDrawBox(pos.x,pos.y,pos.z,50,50,100);
     ofTranslate(0,0,-60);
     ofSetColor(255, 0, 0);
-    ofDrawCircle(pos->x, pos->y, borderRad);
-    ofDrawLine(pos->x+vel->getNormalized().x*40, pos->y + vel->getNormalized().y*40,pos->x +  vel->x, pos->y + vel->y);
+    ofDrawCircle(pos.x, pos.y, borderRad);
 }
-void Node::goTo(){
-    float distToTarget = target.distance(pos);
+void Node::goTo(ofVec3f _target){
+    float distToTarget = _target.distance(pos);
     ofSetColor(255);
-    ofDrawLine(target.x, target.y, pos->x, pos->y);
+    ofDrawLine(_target.x, _target.y, pos.x, pos.y);
+    pos.interpolate(_target, 0.01);
 }
 void Node::update(){
-    vel.operator+=(acc);
-    pos.operator+=(vel);
-    acc.operator*=(0);
-    
-    //limit magnitude
-    if(vel->length() > 4){
-        vel.set(vel->getNormalized()*10);
-    }
 }
-void Node::border(){
-    if(pos->x > 900){
-        acc.set(ofVec3f(-2,0,0));
+void Node::abortMove(){
+}
+void Node::borderCollisionCheck(){
+    if(pos.x > 900){
     }
-    if(pos->x < 0){
-        acc.set(ofVec3f(2,0,0));
+    if(pos.x < 0){
     }
-    if(pos->y > 400){
-        acc.set(ofVec3f(0,-2,0));
+    if(pos.y > 400){
     }
-    if(pos->y < 0){
-        acc.set(ofVec3f(0,2,0));
+    if(pos.y < 0){
     }
 }
 

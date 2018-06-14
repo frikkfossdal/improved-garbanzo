@@ -18,27 +18,18 @@ class Node{
 public:
     //Constructors
     Node();
-    Node(int initPos);
+    Node(ofVec3f initPos);
     //Variables
-    ofVec3f target;
-    int borderRad; 
     
-    //GUI Parameters
-    ofParameter<ofVec3f> pos;
-    ofParameter<ofVec3f> vel;
-    ofParameter<ofVec3f> acc;
-    ofParameter<double> targetDist;
-    ofParameter<bool> status;
-    ofParameter<bool> synced; 
-    ofParameterGroup parameters;
-    
-    ofxGrbl grbl1; 
+    ofVec3f pos;
+    int borderRad;
     
     //Methods
     void show();
-    void goTo();
+    void goTo(ofVec3f _target);
     void update();
-    void border();
+    void borderCollisionCheck();
+    void abortMove();
 
 private:
     void setup();

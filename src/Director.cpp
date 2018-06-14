@@ -19,7 +19,7 @@ Director::Director(){
 void Director::initSystem(int numberOfNodes){
     for(int i = 0; i < numberOfNodes; i++){
         //Init nodes
-        Node newNode = *new Node(i*200);
+        Node newNode = *new Node();
         nodes.push_back(newNode);
     }
 }
@@ -33,6 +33,9 @@ void Director::showSystem(){
 void Director::updateSystem(){
     for(auto it = nodes.begin(); it!=nodes.end(); it++){
         it->update();
-        it->border();
+        it->borderCollisionCheck();
     }
+}
+void Director::assignTargets(ofVec3f _target){
+    nodes[0].goTo(_target);
 }
