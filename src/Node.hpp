@@ -10,11 +10,9 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "Stepper.hpp"
 #include "ofxGui.h"
-#include "ofxGrbl.h"
 
-class Node{
+class Node : public ofThread{
 public:
     //Constructors
     Node();
@@ -22,19 +20,26 @@ public:
     //Variables
     
     ofVec3f pos;
+    ofVec3f target;
     int borderRad;
     
     //Methods
     void show();
-    void goTo(ofVec3f _target);
+    void goTo();
     void update();
     void borderCollisionCheck();
     void abortMove();
+    void threadedFunction();
+    void startNode();
+    void stopNode();
+    void setTarget(ofVec3f _target); 
+    int index;
 
 private:
     void setup();
     void updateParam();
     void setupGUI();
+    
 
 };
 

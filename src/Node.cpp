@@ -12,6 +12,7 @@ Node::Node(){
 Node::Node(ofVec3f initPos){
     setup();
     pos = initPos;
+    index = 0;
 }
 
 void Node::show(){
@@ -24,11 +25,14 @@ void Node::show(){
     ofSetColor(255, 0, 0);
     ofDrawCircle(pos.x, pos.y, borderRad);
 }
-void Node::goTo(ofVec3f _target){
-    float distToTarget = _target.distance(pos);
-    ofSetColor(255);
-    ofDrawLine(_target.x, _target.y, pos.x, pos.y);
-    pos.interpolate(_target, 0.01);
+void Node::goTo(){
+    float distToTarget = target.distance(pos);
+    //ofSetColor(255);
+    //ofDrawLine(_target.x, _target.y, pos.x, pos.y);
+    pos.interpolate(target, 0.000000001);
+}
+void Node::setTarget(ofVec3f _target){
+    target = _target;
 }
 void Node::update(){
 }
@@ -44,7 +48,27 @@ void Node::borderCollisionCheck(){
     if(pos.y < 0){
     }
 }
+// ---------------------THREADING-------------------------
 
+void Node::threadedFunction(){
+    while(isThreadRunning()){
+        lock();
+        if(index == 1000000){
+            pos.interpolate(target, 0.1);
+            
+            index = 0;
+        }
+        index++;
+        
+        unlock();
+    }
+}
+void Node::startNode(){
+    startThread();
+}
+void Node::stopNode(){
+    stopThread();
+}
 
 
 //private methods

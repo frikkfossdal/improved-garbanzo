@@ -1,6 +1,1 @@
-ofxAssimpModelLoader
-ofxGrbl
 ofxGui
-ofxSvg
-ofxUI
-ofxXmlSettings

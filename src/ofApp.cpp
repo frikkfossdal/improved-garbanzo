@@ -2,32 +2,30 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    Krennic.initSystem(3);
-    //cam.enableOrtho();
+    node1.startNode();
 }
 //--------------------------------------------------------------
 void ofApp::update(){
-    //mainGUI.backgroundGrid();
 }
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackground(55);
-    //update the node system and draw it
     cam.begin();
-    //ofDrawGrid();
-    Krennic.updateSystem();
-    Krennic.showSystem();
+    node1.show();
     cam.end();
+    ofSetColor(255, 55);
+    ofDrawBitmapString(node1.pos, 50, 50);
+    ofDrawBitmapString(node1.target, 50, 80);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    
+    ofVec3f vec = ofVec3f(ofRandom(300),ofRandom(300));
+    node1.setTarget(vec);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    Krennic.assignTargets(ofVec3f(ofRandom(300), ofRandom(400)));
 
 }
 

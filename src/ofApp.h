@@ -2,8 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-#include "Director.hpp"
-#include "ofxSvg.h"
+#include "Node.hpp"
 
 
 class ofApp : public ofBaseApp{
@@ -26,10 +25,5 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     ofEasyCam cam;
-    Director Krennic;
-    ofxPanel panel1;
-    ofxPanel panel2;
-    ofxPanel panel3;
-    
-    ofxSVG logo; 
+    Node node1; 
 };
