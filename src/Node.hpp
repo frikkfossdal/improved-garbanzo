@@ -21,7 +21,12 @@ public:
     
     ofVec3f pos;
     ofVec3f target;
+    ofPolyline contour;
     int borderRad;
+    int timeIndex;
+    const int numVertices = 80;
+    vector< ofVec3f > positions; // Travel over poly3
+    float length; 
     
     //Methods
     void show();
@@ -32,8 +37,8 @@ public:
     void threadedFunction();
     void startNode();
     void stopNode();
-    void setTarget(ofVec3f _target); 
-    int index;
+    void setTarget(ofVec3f _target);
+    void createShape();
 
 private:
     void setup();

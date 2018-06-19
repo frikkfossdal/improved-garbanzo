@@ -8,11 +8,12 @@
 
 #include "Node.hpp"
 Node::Node(){
+
 }
 Node::Node(ofVec3f initPos){
     setup();
     pos = initPos;
-    index = 0;
+    timeIndex = 0;
 }
 
 void Node::show(){
@@ -24,12 +25,13 @@ void Node::show(){
     ofTranslate(0,0,-60);
     ofSetColor(255, 0, 0);
     ofDrawCircle(pos.x, pos.y, borderRad);
+    contour.draw();
 }
 void Node::goTo(){
     float distToTarget = target.distance(pos);
     //ofSetColor(255);
     //ofDrawLine(_target.x, _target.y, pos.x, pos.y);
-    pos.interpolate(target, 0.000000001);
+    //pos.interpolate(target, 0.0001);
 }
 void Node::setTarget(ofVec3f _target){
     target = _target;
@@ -48,23 +50,36 @@ void Node::borderCollisionCheck(){
     if(pos.y < 0){
     }
 }
+void Node::createShape(){
+    ofVec2f p( 1.f, 0.f );
+    int angle = 360 / numVertices;
+    contour.clear();
+    for(int i = 0; i < numVertices; i++){
+        p.rotate( angle * ( 1.f + 0.5f * ofRandomf() ) );
+        contour.addVertex( ofVec2f( 200.f, 200.f ) + p * ofRandom( 300.f, 400.f ) );
+    }
+    contour.setClosed(true);
+    
+}
 // ---------------------THREADING-------------------------
 
 void Node::threadedFunction(){
     while(isThreadRunning()){
-        lock();
-        if(index == 1000000){
-            pos.interpolate(target, 0.1);
-            
-            index = 0;
+        float totalLength = contour.getLengthAtIndex(numVertices-1);
+        if(timeIndex == 500000){
+            timeIndex = 0;
+            length += 1.f;
+            if(length >=totalLength) length -=totalLength; 
+            pos = contour.getPointAtLength(length);
         }
-        index++;
-        
-        unlock();
+        timeIndex++;
     }
 }
 void Node::startNode(){
-    startThread();
+    if(contour.size() > 10){
+        startThread();
+    }
+    
 }
 void Node::stopNode(){
     stopThread();

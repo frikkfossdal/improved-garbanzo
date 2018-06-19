@@ -2,7 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    node1.createShape();
     node1.startNode();
+    
+    node2.createShape();
+    node2.startNode();
 }
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -12,6 +16,7 @@ void ofApp::draw(){
     ofBackground(55);
     cam.begin();
     node1.show();
+    node2.show();
     cam.end();
     ofSetColor(255, 55);
     ofDrawBitmapString(node1.pos, 50, 50);
@@ -20,13 +25,14 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    ofVec3f vec = ofVec3f(ofRandom(300),ofRandom(300));
-    node1.setTarget(vec);
+    node1.createShape();
+    
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+node2.createShape();
 }
 
 //--------------------------------------------------------------
@@ -40,7 +46,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------

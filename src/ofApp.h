@@ -25,5 +25,6 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     ofEasyCam cam;
-    Node node1; 
+    Node node1;
+    Node node2; 
 };
