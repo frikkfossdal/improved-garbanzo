@@ -59,10 +59,8 @@ void Node::createShape(){
         contour.addVertex( ofVec2f( 200.f, 200.f ) + p * ofRandom( 300.f, 400.f ) );
     }
     contour.setClosed(true);
-    
 }
 // ---------------------THREADING-------------------------
-
 void Node::threadedFunction(){
     while(isThreadRunning()){
         float totalLength = contour.getLengthAtIndex(numVertices-1);
