@@ -24,6 +24,7 @@ public:
     ofPolyline contour;
     int borderRad;
     int timeIndex;
+    int timeIndex2;
     const int numVertices = 80;
     vector< ofVec3f > positions; // Travel over poly3
     float length; 

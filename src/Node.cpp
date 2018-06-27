@@ -15,7 +15,6 @@ Node::Node(ofVec3f initPos){
     pos = initPos;
     timeIndex = 0;
 }
-
 void Node::show(){
     ofNoFill();
     ofSetColor(100);
@@ -73,13 +72,13 @@ void Node::threadedFunction(){
             pos = contour.getPointAtLength(length);
         }
         timeIndex++;
+         timeIndex2++;
     }
 }
 void Node::startNode(){
     if(contour.size() > 10){
         startThread();
     }
-    
 }
 void Node::stopNode(){
     stopThread();

@@ -19,14 +19,15 @@ void ofApp::draw(){
     node2.show();
     cam.end();
     ofSetColor(255, 55);
-    ofDrawBitmapString(node1.pos, 50, 50);
-    ofDrawBitmapString(node1.target, 50, 80);
+    ofDrawBitmapString(node1.timeIndex2, 50, 50);
+    ofDrawBitmapString(node2.timeIndex2, 50, 80);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    node1.createShape();
-    
+    //node1.createShape();
+    node1.stopNode();
+    node2.stopNode();
     
 }
 
@@ -46,7 +47,8 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    
+    node1.startNode();
+    node2.startNode();
 }
 
 //--------------------------------------------------------------
